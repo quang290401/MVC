@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.DAO.Model.Product;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.service.IproductService;
-import com.utlis.httpUtil;
+import com.utlis.HttpUtil;
 
 @WebServlet(urlPatterns = { "/api-admin" })
 public class NewAPI extends HttpServlet {
@@ -34,7 +34,7 @@ public class NewAPI extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("application/json");
-		Product product= httpUtil.of(req.getReader()).toProduct(Product.class);
+		Product product=  HttpUtil.of(req.getReader()).toProduct(Product.class);
 		product = proIproductService.save(product);
 		mapper.writeValue(resp.getOutputStream(), product);
 	}
@@ -44,7 +44,7 @@ public class NewAPI extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("application/json");
-		Product deleteProduct= httpUtil.of(req.getReader()).toProduct(Product.class);
+		Product deleteProduct= HttpUtil.of(req.getReader()).toProduct(Product.class);
 		proIproductService.delete(deleteProduct.getIds());
 		mapper.writeValue(resp.getOutputStream(), "{}");
 	}
@@ -54,7 +54,7 @@ public class NewAPI extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("application/json");
-		Product updateNew= httpUtil.of(req.getReader()).toProduct(Product.class);
+		Product updateNew= HttpUtil.of(req.getReader()).toProduct(Product.class);
 		updateNew = proIproductService.Update(updateNew);
 		mapper.writeValue(resp.getOutputStream(), updateNew);
 	}

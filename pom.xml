@@ -6,8 +6,8 @@
 	<packaging>war</packaging>
 	<properties>
 		<jsp.api.version>2.0</jsp.api.version>
-		<servlet.api.version>3.1.0</servlet.api.version>
-		<sitemesh.version>2.4.2</sitemesh.version>
+		<servlet.api.version>4.0.1</servlet.api.version>
+		<sitemesh.version>2.5.0</sitemesh.version>
 		<maven.compiler.soure>17</maven.compiler.soure>
 		<maven.compiler.target>17</maven.compiler.target>
 		<weld.servlet.version>3.1.0</weld.servlet.version>
@@ -21,7 +21,6 @@
 			<artifactId>cybrid-api-organization-kotlin</artifactId>
 			<version>0.88.6</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>javax.servlet</groupId>

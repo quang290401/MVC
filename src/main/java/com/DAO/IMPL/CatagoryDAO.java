@@ -34,4 +34,13 @@ public class CatagoryDAO extends ConnectionSQL<Catagory> implements IcatagoryDAO
 		return query(sql, new CatagoryMapper(),id);
 	}
 
+	@Override
+	public Catagory findOne2(String id) {
+		String sql = "SELECT * FROM danhMuc WHERE id = ?";
+		List<Catagory> catagories = query(sql, new CatagoryMapper(),id);
+		return  catagories.isEmpty()? null:catagories.get(0);
+	}
+
+	
+
 }

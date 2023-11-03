@@ -11,24 +11,25 @@ import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
+import com.DAO.Model.Product;
 import com.Mapper.RowMapper;
 
 
 public class ConnectionSQL<T> implements GenericDAO<T> {
+	static ResourceBundle resourceBundle = ResourceBundle.getBundle("db");
 	public static Connection GetConnection() {
-		String sql = "jdbc:sqlserver://localhost:1433;databaseName=DogiaDung;user=sa"
-				+ ";password=quang@201;encrypt=true;trustServerCertificate=true";
+		String sql =resourceBundle.getString("sql");
 
 		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			Class.forName(resourceBundle.getString("classforname"));
 			return DriverManager.getConnection(sql);
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} 
 		return null;
 
 	}
@@ -137,12 +138,12 @@ public class ConnectionSQL<T> implements GenericDAO<T> {
 	}
 
 	@Override
-	public Long insert(String sql, Object... parameters) {
+	public String insert(String sql, Object... parameters) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
-			Long id = null;
+			String id = null;
 			connection = GetConnection();
 			connection.setAutoCommit(false);
 			statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -150,7 +151,7 @@ public class ConnectionSQL<T> implements GenericDAO<T> {
 			statement.executeUpdate();
 			resultSet = statement.getGeneratedKeys();
 			if (resultSet.next()) {
-				id = resultSet.getLong(1);
+				id = resultSet.getString(1);
 			}
 			connection.commit();
 			return id;
@@ -197,6 +198,36 @@ public class ConnectionSQL<T> implements GenericDAO<T> {
 				return 0;
 			}
 		}
+	}
+
+	@Override
+	public Product query2(String sql, RowMapper<Product> rowMapper, Object... parameters) {
+	    Product result = null;
+	    Connection connection = null;
+	    PreparedStatement statement = null;
+	    ResultSet resultSet = null;
+	    try {
+	        connection = GetConnection();
+	        statement = connection.prepareStatement(sql);
+	        setParameter(statement, parameters);
+	        resultSet = statement.executeQuery();
+	        if (resultSet.next()) {
+	            result = rowMapper.mapRow(resultSet);
+	        }
+	        return result;
+	    } catch (SQLException e) {
+	        // Xử lý ngoại lệ SQLException nếu cần
+	        e.printStackTrace();
+	        return null;
+	    } finally {
+	        try {
+	            closeJDBC(connection, statement, resultSet);
+	        } catch (Exception e) {
+	            // Xử lý ngoại lệ nếu cần
+	            e.printStackTrace();
+	            return null;
+	        }
+	    }
 	}
 
 }

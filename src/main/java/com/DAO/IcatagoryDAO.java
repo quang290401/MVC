@@ -10,5 +10,7 @@ import com.DAO.Model.Catagory;
 public interface IcatagoryDAO extends GenericDAO<Catagory> {
 	List<Catagory> findAll();
 	List<Catagory> findOne(String id);
+	Catagory findOne2(String id);
+	
 	
 }

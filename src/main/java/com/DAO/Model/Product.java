@@ -11,13 +11,16 @@ public class Product extends AbstractModel<Product> {
 	private int quantity;
 	private int status;
 	private long ids[];
+	private String image;
 
 	public Product() {
 		super();
 	}
 
+
+
 	public Product(Long numOrDer, String idProduct, String nameProduct, BigDecimal priceProduct, String categoryProduct,
-			int quantity, int status) {
+			int quantity, int status, long[] ids, String image) {
 		super();
 		this.numOrDer = numOrDer;
 		this.idProduct = idProduct;
@@ -26,7 +29,11 @@ public class Product extends AbstractModel<Product> {
 		this.categoryProduct = categoryProduct;
 		this.quantity = quantity;
 		this.status = status;
+		this.ids = ids;
+		this.image = image;
 	}
+
+
 
 	public Long getNumOrDer() {
 		return numOrDer;
@@ -90,6 +97,14 @@ public class Product extends AbstractModel<Product> {
 
 	public void setIds(long ids[]) {
 		this.ids = ids;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 

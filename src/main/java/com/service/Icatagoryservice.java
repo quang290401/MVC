@@ -10,4 +10,5 @@ import com.DAO.Model.Catagory;
 public interface Icatagoryservice {
 	List<Catagory> findAll();
 	List<Catagory> findOne(String id);
+
 }

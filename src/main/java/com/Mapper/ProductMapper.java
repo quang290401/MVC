@@ -17,6 +17,7 @@ public class ProductMapper implements RowMapper<Product> {
 			product.setCategoryProduct(resultSet.getString("iddanhmuc"));
 			product.setQuantity(resultSet.getInt("soLuong"));
 			product.setStatus(resultSet.getInt("trangThai"));
+			product.setImage(resultSet.getString("img"));
 			return product;
 		} catch (SQLException e) {
 			return null;

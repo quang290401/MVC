@@ -5,12 +5,12 @@ public class User extends AbstractModel<User> {
 	private String idUser;
 	private String taiKhoan;
 	private String matKhau;
-	private String vaiTro;
+	private String fullName;
+	private Integer vaTroId;
 	private Integer status;
+	private Role role = new Role();
 
-	public String getVaiTro() {
-		return vaiTro;
-	}
+	
 
 	public Long getNumOrDer() {
 		return numOrDer;
@@ -28,9 +28,7 @@ public class User extends AbstractModel<User> {
 		this.idUser = idUser;
 	}
 
-	public void setVaiTro(String vaiTro) {
-		this.vaiTro = vaiTro;
-	}
+	
 
 	public Integer getStatus() {
 		return status;
@@ -54,6 +52,30 @@ public class User extends AbstractModel<User> {
 
 	public void setMatKhau(String matKhau) {
 		this.matKhau = matKhau;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public Integer getVaTroId() {
+		return vaTroId;
+	}
+
+	public void setVaTroId(Integer vaTroId) {
+		this.vaTroId = vaTroId;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 }

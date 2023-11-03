@@ -260,7 +260,7 @@
         },
 
         makeHref: function (page) {
-            return this.options.href ? this.generateQueryString(page) : "#";
+            return this.options.href ? this.generateQueryString(page) :"#";
         },
 
         makeText: function (text, page) {

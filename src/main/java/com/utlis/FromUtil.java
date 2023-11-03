@@ -14,10 +14,10 @@ import org.apache.commons.beanutils.BeanUtils;
 
 public class FromUtil {
 	@SuppressWarnings({ "unchecked", "deprecation" })
-	public static <T> T toProduct(Class<T> clazz, HttpServletRequest request) {
+	public static <T> T toModel(Class<T> clazz, HttpServletRequest request) {
 		T object = null;
 		try {
-			object = clazz.newInstance();
+			object = clazz.newInstance(); // chạy siêu chậm
 			BeanUtils.populate(object, request.getParameterMap());
 		} catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
 			System.out.print(e.getMessage());

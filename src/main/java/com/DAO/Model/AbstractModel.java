@@ -11,9 +11,10 @@ public class AbstractModel<T> {
 	private String modifyByte;
 	private List<T> listResulset = new ArrayList<>();
     private Integer page;
-    private Integer maxPageItem;
+    private Integer maxPageItem ;
     private Integer totalPage;
     private Integer totalItem;
+    private String type;
 	public Date getCreateDate() {
 		return createDate;
 	}
@@ -68,6 +69,13 @@ public class AbstractModel<T> {
 	public void setTotalItem(Integer totalItem) {
 		this.totalItem = totalItem;
 	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	
     
 	
 

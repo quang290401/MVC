@@ -10,10 +10,15 @@ import com.paging.Pageble;
 @SessionScoped
 public interface IproductDAO extends GenericDAO<Product> {
 	List<Product> findAll(Pageble page);
-	Product findOne(Long id);
-	Long save(Product product);
+	List<Product> findAllProduct();
+	List<Product> findAllProductCatagory(String idcatagory);
+    Product findAllTopProduct();
+	Product findOne(String id);
+	String save(Product product);
 	void update(Product product);
 	void delete(long ids);
 	int getTotalItem();
+	Product findOne2(String id);
+	List<Product> findTop4();
 
 }

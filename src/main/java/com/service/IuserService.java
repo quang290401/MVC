@@ -1,5 +1,7 @@
 package com.service;
 
-public interface IuserService {
+import com.DAO.Model.User;
 
+public interface IuserService {
+	User findByUserNameAndPassWordAndStatus(String userName, String passWord, Integer status);
 }
