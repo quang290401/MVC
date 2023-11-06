@@ -1,5 +1,8 @@
 package com.DAO.Model;
 
+import lombok.Getter;
+
+@Getter
 public class User extends AbstractModel<User> {
 	private Long numOrDer;
 	private String idUser;

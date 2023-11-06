@@ -15,6 +15,12 @@
 	</properties>
 	<!-- https://mvnrepository.com/artifact/javax.servlet/jsp-api -->
 	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.24</version>
+			<scope>provided</scope>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/app.cybrid/cybrid-api-organization-kotlin -->
 		<dependency>
 			<groupId>app.cybrid</groupId>
