@@ -11,5 +11,7 @@ public interface GenericDAO<T> {
 	Product query2(String sql, RowMapper<Product> rowMapper, Object... parameters);
 	void update (String sql, Object... parameters);
 	String insert (String sql, Object... parameters);
+	void insertCart (String sql, Object... parameters);
+
 	int count(String sql, Object... parameters);
 }

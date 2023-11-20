@@ -13,8 +13,14 @@
 	<decorator name="web" page="web.jsp">
 		<pattern>/trang-chu*</pattern>
 	</decorator>
-		<decorator name="web" page="web.jsp">
+	<decorator name="web" page="web.jsp">
 		<pattern>/catagory*</pattern>
+	</decorator>
+	<decorator name="web" page="web.jsp">
+		<pattern>/detail*</pattern>
+	</decorator>
+	<decorator name="web" page="web.jsp">
+		<pattern>/add-to-cart*</pattern>
 	</decorator>
 
 	<decorator name="login" page="login.jsp">

@@ -13,6 +13,7 @@ public class UserMapper implements RowMapper<User> {
 		User user = new User();
 		try {
 			user.setNumOrDer(rs.getLong("NumOrder"));
+			user.setIdUser(rs.getString("id"));
 			user.setTaiKhoan(rs.getString("taikhoan"));
 			user.setMatKhau(rs.getString("matkhau"));
 			user.setFullName(rs.getString("tennguoidung"));

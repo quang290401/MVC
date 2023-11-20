@@ -21,7 +21,7 @@
 					aria-current="page" href="#!">Đăng Kí |</a></li>
 				<c:if test="${not empty USERMODEL}">
 					<li><a class="nav-item"><a class="nav-link active"
-							aria-current="page" href='#'>Xin chào,${USERMODEL.fullName } |</a></li>
+					aria-current="page" href='#'>Xin chào,${USERMODEL.fullName } |</a></li>
 					<li><a class="nav-item"><a class="nav-link active"
 							aria-current="page"
 							href='<c:url value="/dang-xuat?action=logout"/>'>Thoát |</a></li>
@@ -32,12 +32,14 @@
 				</li>
 				</c:if>
 			</ul>
-			<form class="d-flex">
-				<button class="btn btn-outline-dark" type="submit">
-					<i class="bi-cart-fill me-1"></i> Cart <span
+			<form class="d-flex" >
+				
+			 
+					<a class="bi-cart-fill me-1" href="<c:url value="/add-to-cart?idUser=${USERMODEL.idUser}"/>"></a> Cart <span
 						class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-				</button>
+				
 			</form>
+			
 		</div>
 	</div>
 </nav>

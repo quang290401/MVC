@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
+<c:url var="APIurl" value="/add-to-cart" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +9,11 @@
 <title>Insert title here</title>
 <link href="<c:url value='/template/web/csspaging/styles.css'/>"
 	rel="stylesheet" type="text/css" media="all" />
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	
 </head>
 <body>
-		
+       <form id="formSubmit">
 			<div class="row gx-4 gx-lg-5 align-items-center">
 				<div class="col-md-6">
 					<img class="card-img-top mb-5 mb-md-0"
@@ -27,14 +30,20 @@
 						consequatur obcaecati excepturi alias magni, accusamus eius
 						blanditiis delectus ipsam minima ea iste laborum vero?</p>
 					<div class="d-flex">
-						<input class="form-control text-center me-3" id="inputQuantity"
-							type="num" value="1" style="max-width: 3rem" />
-						<button class="btn btn-outline-dark flex-shrink-0" type="button">
-							<i class="bi-cart-fill me-1"></i> Add to cart
-						</button>
+						
+						
+						<input type="hidden" class="form-control" id="gioHang" name="gioHang"
+								         value="${Cart.id }" />
+					    <input type="hidden" class="form-control" id="sanPham" name="sanPham"
+							         value="${detailSP.idProduct }" />
+	                    <input class="form-control" value=1 type="number" id="soLuong" name ="soLuong">
+						
+							<a class="btn btn-outline-dark mt-auto" id="btnAddCart"> Add to cart </a> 
+					
 					</div>
 				</div>
 			</div>
+			</form>
 	
 	<!-- Related items section-->
 		
@@ -60,7 +69,7 @@
 						<!-- Product actions-->
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
-								<a class="btn btn-outline-dark mt-auto" href="<c:url value="/detail?idProduct=${o.idProduct }"/>">View
+								<a class="btn btn-outline-dark mt-auto" href="<c:url value="/detail?idProduct=${o.idProduct }&idUser=${USERMODEL.idUser}"/>">View
 									options</a>
 							</div>
 						</div>
@@ -69,8 +78,38 @@
 				</c:forEach>
 				
 			</div>
-	
-	<!-- Footer-->
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+   <script >
+   
+   $('#btnAddCart').click(function(e) {
+		e.preventDefault();
+		var data = {};
+		var formData = $('#formSubmit').serializeArray();
+		$.each(formData, function(i, v) {
+			console.log(v)
+			data["" + v.name + ""] = v.value;
+		});
+		if (true) {
+			addNew(data);
+		} 
+	});
+   function addNew(data) {
+		$
+				.ajax({
+					url : '${APIurl}',
+					type : 'POST',
+					contentType : 'application/json',
+					data : JSON.stringify(data),
+					dataType : 'json',
+					success : function(result) {
+				  alert('Sản Phẩm đã được thêm vào giỏ hàng');
+					},
+					error : function(error) {
+
+					}
+				});
+	}
+   </script>
 
 </body>
 </html>

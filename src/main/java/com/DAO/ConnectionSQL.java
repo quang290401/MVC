@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.DAO.Model.Cart;
 import com.DAO.Model.Product;
 import com.Mapper.RowMapper;
 
@@ -105,7 +106,7 @@ public class ConnectionSQL<T> implements GenericDAO<T> {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		} 
 	}
 
 	@Override
@@ -229,5 +230,67 @@ public class ConnectionSQL<T> implements GenericDAO<T> {
 	        }
 	    }
 	}
+	public Cart query3(String sql, RowMapper<Cart> rowMapper, Object... parameters) {
+	    Cart result = null;
+	    Connection connection = null;
+	    PreparedStatement statement = null;
+	    ResultSet resultSet = null;
+	    try {
+	        connection = GetConnection();
+	        statement = connection.prepareStatement(sql);
+	        setParameter(statement, parameters);
+	        resultSet = statement.executeQuery();
+	        if (resultSet.next()) {
+	            result = rowMapper.mapRow(resultSet);
+	        }
+	        return result;
+	    } catch (SQLException e) {
+	        // Xử lý ngoại lệ SQLException nếu cần
+	        e.printStackTrace();
+	        return null;
+	    } finally {
+	        try {
+	            closeJDBC(connection, statement, resultSet);
+	        } catch (Exception e) {
+	            // Xử lý ngoại lệ nếu cần
+	            e.printStackTrace();
+	            return null;
+	        }
+	    }
+	}
+
+	@Override
+	public void insertCart(String sql, Object... parameters) {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		try {
+			connection = GetConnection();
+			connection.setAutoCommit(false);
+			statement = connection.prepareStatement(sql,statement.RETURN_GENERATED_KEYS);
+			setParameter(statement, parameters);
+			statement.executeUpdate();
+			connection.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			if (connection != null) {
+				try {
+					connection.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		} finally {
+			try {
+			closeJDBC(connection, statement, null);
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+	}
+
+	
+		
+	
 
 }

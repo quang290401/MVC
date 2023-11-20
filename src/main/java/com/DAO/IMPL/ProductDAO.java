@@ -1,20 +1,15 @@
 package com.DAO.IMPL;
 
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
+
 import java.util.List;
 
-import javax.enterprise.context.SessionScoped;
+
 
 import com.DAO.ConnectionSQL;
 import com.DAO.IproductDAO;
 import com.DAO.Model.Product;
-import com.Mapper.CatagoryMapper;
+
 import com.Mapper.ProductMapper;
 import com.paging.Pageble;
 

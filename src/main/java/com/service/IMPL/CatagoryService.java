@@ -7,9 +7,9 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 import com.DAO.IcatagoryDAO;
-import com.DAO.IMPL.ProductDAO;
+
 import com.DAO.Model.Catagory;
-import com.DAO.Model.Product;
+
 import com.service.Icatagoryservice;
 
 @SessionScoped
@@ -18,8 +18,6 @@ public class CatagoryService implements Icatagoryservice ,Serializable{
 	@Inject
 	private IcatagoryDAO caIcatagoryDAO;
 	
-	@Inject
-	private ProductDAO productDAO;
 
 	@Override
 	public List<Catagory> findAll() {

@@ -19,6 +19,9 @@
 	<decorator name="web" page="web.jsp">
 		<pattern>/detail*</pattern>
 	</decorator>
+	<decorator name="web" page="web.jsp">
+		<pattern>/add-to-cart*</pattern>
+	</decorator>
 
 	<decorator name="login" page="login.jsp">
 		<pattern>/dang-nhap*</pattern>
