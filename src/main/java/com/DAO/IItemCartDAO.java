@@ -8,4 +8,5 @@ import com.DAO.Model.ItemCart;
 @SessionScoped
 public interface IItemCartDAO extends GenericDAO<ItemCart>{
 	List<ItemCart> findAllProduct(String idgioHang );
+	ItemCart findOne(String idGioHang,String idSanPham);
 }

@@ -8,4 +8,5 @@ import com.DAO.Model.ItemCart;
 @SessionScoped
 public interface IItemCartService {
 	List<ItemCart> findAllProduct(String idgioHang );
+	ItemCart finOne (String idGioHang,String idSanPham);
 }

@@ -42,4 +42,9 @@ public class DetailCartService implements IdetailCartService,Serializable {
 		
 	}
 
+	@Override
+	public void update2( int soLuong,String idGioHang, String idSP) {
+		dIdetailCartDAO.update2(soLuong,idGioHang,idSP);
+	}
+
 }

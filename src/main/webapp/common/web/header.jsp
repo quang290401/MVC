@@ -18,7 +18,7 @@
 					aria-current="page" href='<c:url value="/trang-chu"/>'>Trang Chủ |</a></li>
 
 				<li class="nav-item"><a class="nav-link active"
-					aria-current="page" href="#!">Đăng Kí |</a></li>
+					aria-current="page" href='<c:url value="/Add-user"/>'>Đăng Kí |</a></li>
 				<c:if test="${not empty USERMODEL}">
 					<li><a class="nav-item"><a class="nav-link active"
 					aria-current="page" href='#'>Xin chào,${USERMODEL.fullName } |</a></li>

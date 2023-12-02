@@ -87,7 +87,7 @@ public class HomeController extends HttpServlet {
 			} else {
 				resp.sendRedirect(req.getContextPath() + "/dang-nhap?action=login&message=username_password_invalid&alert=danger ");
 			}
-			
+
 		}
 	}
 }

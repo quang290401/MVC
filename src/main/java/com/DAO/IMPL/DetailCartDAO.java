@@ -42,4 +42,10 @@ public class DetailCartDAO extends ConnectionSQL<DetailCart> implements IdetailC
 		
 	}
 
+	@Override
+	public void update2(int soluong,String idGioHang, String idSp) {
+      String sql = "update gioHangChitiet set soLuong = soLuong+? where idGioHang like ? and idSanPham like ?";
+		update(sql,soluong,idGioHang,idSp);
+	}
+
 }

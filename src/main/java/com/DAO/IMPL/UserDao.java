@@ -14,11 +14,17 @@ public class UserDao extends ConnectionSQL<User> implements IuserDAO{
 
 	@Override
 	public User findByUserNameAndPassWordAndStatus(String userName, String passWord, Integer status) {
-		StringBuilder sql=new StringBuilder( "SELECT * FROM Users AS u inner join vaitro AS v on u.numorder = v.numorder ") ;
+		StringBuilder sql=new StringBuilder( "SELECT * FROM Users AS u inner join vaitro AS v on u.vaitroID = v.numorder ") ;
 		sql.append("WHERE taiKhoan LIKE  ? and matKhau LIKE  ? and status =?");
 		List<User> users = query(sql.toString(), new UserMapper(),userName,passWord,status);
 		return users.isEmpty() ? null : users.get(0);
 		
+	}
+
+	@Override
+	public void save(User user) {
+		String sql="insert into users  VALUES(?,?,?,?,?)";
+		insertCart(sql,user.getTaiKhoan(),user.getMatKhau(),user.getFullName(),2,1);
 	}
 
 }

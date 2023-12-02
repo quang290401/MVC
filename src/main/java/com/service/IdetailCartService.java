@@ -9,10 +9,12 @@ import com.DAO.Model.DetailCart;
 
 
 @SessionScoped
-public interface IdetailCartService {
+public interface IdetailCartService  {
 	
 	void save(DetailCart detailCart);
 	void delete(String id);
+
+	void update2(int soLuong,String idGioHang,String idSP);
 	 Cart findOneCart(String idUser);
 
 }

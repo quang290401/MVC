@@ -26,5 +26,8 @@
 	<decorator name="login" page="login.jsp">
 		<pattern>/dang-nhap*</pattern>
 	</decorator>
+	<decorator name="web" page="web.jsp">
+		<pattern>/Add-user*</pattern>
+	</decorator>
 
 </decorators>

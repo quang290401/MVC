@@ -46,6 +46,7 @@ com\service\IItemCartService.class
 com\service\IMPL\ProductService.class
 com\service\IMPL\UserService.class
 com\Mapper\CartMapper.class
+com\web\ServletAddUser.class
 com\DAO\GenericDAO.class
 com\utlis\SessionUtil.class
 com\DAO\IMPL\ProductDAO.class

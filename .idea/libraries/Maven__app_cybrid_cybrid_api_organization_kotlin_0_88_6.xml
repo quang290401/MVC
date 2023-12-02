@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: app.cybrid:cybrid-api-organization-kotlin:0.88.6">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/app/cybrid/cybrid-api-organization-kotlin/0.88.6/cybrid-api-organization-kotlin-0.88.6.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/app/cybrid/cybrid-api-organization-kotlin/0.88.6/cybrid-api-organization-kotlin-0.88.6-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/app/cybrid/cybrid-api-organization-kotlin/0.88.6/cybrid-api-organization-kotlin-0.88.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

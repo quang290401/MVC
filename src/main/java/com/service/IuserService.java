@@ -4,4 +4,5 @@ import com.DAO.Model.User;
 
 public interface IuserService {
 	User findByUserNameAndPassWordAndStatus(String userName, String passWord, Integer status);
+	void save(User user);
 }

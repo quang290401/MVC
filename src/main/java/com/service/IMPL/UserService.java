@@ -16,4 +16,9 @@ public class UserService implements IuserService  {
 		return iuserDAO.findByUserNameAndPassWordAndStatus(userName, passWord, status);
 	}
 
+	@Override
+	public void save(User user) {
+		iuserDAO.save(user);
+	}
+
 }

@@ -17,6 +17,7 @@ import com.DAO.Model.ItemCart;
 import com.DAO.Model.Product;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.service.IItemCartService;
+import com.service.IMPL.CartService;
 import com.service.IdetailCartService;
 //import com.service.IMPL.ItemCartService;
 import com.utlis.HttpUtil;
@@ -32,18 +33,33 @@ public class AddtoCartController extends HttpServlet {
 	private IdetailCartService deCartService;
 	@Inject
 	private IItemCartService dCartService;
+	@Inject
+	private CartService cartService;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String idkh = req.getParameter("idUser");
 		Cart cart = deCartService.findOneCart(idkh);
+          if(cart==null){
+			  cartService.save(idkh,"2023-04-25");
+			   cart = deCartService.findOneCart(idkh);
+			  req.setAttribute("Cart", cart);
+			  List<ItemCart> listDetailCart = dCartService.findAllProduct(cart.getId());
 
-		req.setAttribute("Cart", cart);
-		List<ItemCart> listDetailCart = dCartService.findAllProduct(cart.getId());
+			  req.setAttribute("ListCardetail", listDetailCart);
+			  RequestDispatcher rd = req.getRequestDispatcher("/views/web/ShoppingCart.jsp");
+			  rd.forward(req, resp);
 
-		req.setAttribute("ListCardetail", listDetailCart);
-		RequestDispatcher rd = req.getRequestDispatcher("/views/web/ShoppingCart.jsp");
-		rd.forward(req, resp);
+		  }else {
+			  req.setAttribute("Cart", cart);
+			  List<ItemCart> listDetailCart = dCartService.findAllProduct(cart.getId());
+
+			  req.setAttribute("ListCardetail", listDetailCart);
+			  RequestDispatcher rd = req.getRequestDispatcher("/views/web/ShoppingCart.jsp");
+			  rd.forward(req, resp);
+
+		  }
+
 	}
 
 	@Override
@@ -52,8 +68,15 @@ public class AddtoCartController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("application/json");
 		DetailCart insertNew= HttpUtil.of(req.getReader()).toProduct(DetailCart.class);
-		 deCartService.save(insertNew);
-		mapper.writeValue(resp.getOutputStream(), insertNew);
+		ItemCart itemCart = dCartService.finOne(insertNew.getIdGioHang(),insertNew.getIdSanPham());
+		if(itemCart!=null){
+			deCartService.update2(insertNew.getSoLuong(),insertNew.getIdGioHang(),insertNew.getIdSanPham());
+			mapper.writeValue(resp.getOutputStream(), insertNew);
+		} else {
+			deCartService.save(insertNew);
+			mapper.writeValue(resp.getOutputStream(), insertNew);
+		}
+
 	}
 
 	@Override
@@ -66,4 +89,13 @@ public class AddtoCartController extends HttpServlet {
 		mapper.writeValue(resp.getOutputStream(), insertNew);
 	}
 
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		req.setCharacterEncoding("UTF-8");
+		resp.setContentType("application/json");
+		DetailCart insertNew= HttpUtil.of(req.getReader()).toProduct(DetailCart.class);
+		deCartService.update2(insertNew.getSoLuong(),insertNew.getIdGioHang(),insertNew.getIdSanPham());
+		mapper.writeValue(resp.getOutputStream(), insertNew);
+	}
 }

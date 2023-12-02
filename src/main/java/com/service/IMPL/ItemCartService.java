@@ -24,4 +24,9 @@ public class ItemCartService implements IItemCartService, Serializable {
 		return cartDAO.findAllProduct(idgioHang);
 	}
 
+	@Override
+	public ItemCart finOne(String idGioHang, String idSanPham) {
+		return cartDAO.findOne(idGioHang,idSanPham);
+	}
+
 }
